@@ -1,0 +1,694 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Health-NivaBupa-Insurance",
+    "version": "1.0"
+  },
+  "paths": {
+    "/NivaBupaQuote": {
+      "post": {
+        "tags": [
+          "Health-NivaBupa-Insurance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuoteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/NivaUWDecisionApi": {
+      "post": {
+        "tags": [
+          "Health-NivaBupa-Insurance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProposalRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/NivaBupaCkyc": {
+      "post": {
+        "tags": [
+          "Health-NivaBupa-Insurance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommonKycRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/NivaBupaCkycStatus": {
+      "post": {
+        "tags": [
+          "Health-NivaBupa-Insurance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KYCStatus"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/NivaBupaDisplayCkycStatus": {
+      "post": {
+        "tags": [
+          "Health-NivaBupa-Insurance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KYCStatus"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/NivaBupaCkycDetails": {
+      "post": {
+        "tags": [
+          "Health-NivaBupa-Insurance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CKYCDetails"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/PushDataToInsurer": {
+      "post": {
+        "tags": [
+          "Health-NivaBupa-Insurance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PushDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Addons": {
+        "type": "object",
+        "properties": {
+          "crn": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "requestId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quoteID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "addonID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "addonName": {
+            "type": "string",
+            "nullable": true
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "withGSTAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "addon_QuestionId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "answervalue": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentQuestionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "isDefault": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddonsResponseDetails": {
+        "type": "object",
+        "properties": {
+          "crn": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "requestId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quoteID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "addonID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "addonName": {
+            "type": "string",
+            "nullable": true
+          },
+          "premiumAmtWithGST": {
+            "type": "number",
+            "format": "double"
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BasicDetails": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "middleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobile": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfAdult": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfChild": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "eldestMemberDOB": {
+            "type": "string",
+            "nullable": true
+          },
+          "eldestMemberAge": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sumInsured": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "paymentFrequency": {
+            "type": "string",
+            "nullable": true
+          },
+          "crn": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "idKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "requestId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenure": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "state_Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "state_Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "quote_Id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "insurer_Id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "coverCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CKYCDetails": {
+        "type": "object",
+        "properties": {
+          "crn": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pan": {
+            "type": "string",
+            "nullable": true
+          },
+          "dob": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommonKycRequest": {
+        "type": "object",
+        "properties": {
+          "crn": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "insurer_Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "middleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "dob": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailId": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "otp": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "KYCStatus": {
+        "type": "object",
+        "properties": {
+          "crn": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "idKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "partnerRequestId": {
+            "type": "string",
+            "nullable": true
+          },
+          "policyNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MemberDetail": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "memberType": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "titleValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "middleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "dob": {
+            "type": "string",
+            "nullable": true
+          },
+          "maritalStatus_Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maritalStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "occupation_Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "occupationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "education_Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "educationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "aadhar": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "pan": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "heightFeet": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "heightInch": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "weight": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "is_PA_Opted": {
+            "type": "boolean"
+          },
+          "is_DM_Opted": {
+            "type": "boolean"
+          },
+          "coverCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlanDetail": {
+        "type": "object",
+        "properties": {
+          "insurer_PlanId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paCovered": {
+            "type": "string",
+            "nullable": true
+          },
+          "isHospitalCash": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAcuteCareOpted": {
+            "type": "string",
+            "nullable": true
+          },
+          "acuteCareSI": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isDMRiderOpted": {
+            "type": "string",
+            "nullable": true
+          },
+          "cover_Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rH_PlanID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "plan_Code": {
+            "type": "string",
+            "nullable": true
+          },
+          "insurer_Id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PushDataRequest": {
+        "type": "object",
+        "properties": {
+          "crn": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "planId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuoteRequest": {
+        "type": "object",
+        "properties": {
+          "isReCalculate": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "basicDetails": {
+            "$ref": "#/components/schemas/BasicDetails"
+          },
+          "memberDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemberDetail"
+            },
+            "nullable": true
+          },
+          "addOnsDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Addons"
+            },
+            "nullable": true
+          },
+          "addonsResponseDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddonsResponseDetails"
+            },
+            "nullable": true
+          },
+          "planDetails": {
+            "$ref": "#/components/schemas/PlanDetail"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserProposalRequest": {
+        "type": "object",
+        "properties": {
+          "crn": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quoteId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "insurerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "otp": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "tnC": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "mobileNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
