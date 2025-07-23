@@ -25,7 +25,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: itassests/Health-NivaBupa-Insurance-doc
-        token: ${{ secrets.DOCS_REPO_TOKEN }}
+        token: ${{ secrets.NIVADOC_REPO_TOKEN }}
         path: docs-repo
 
     - name: Copy generated docs
