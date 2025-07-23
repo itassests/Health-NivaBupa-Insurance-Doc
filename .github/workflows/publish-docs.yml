@@ -1,4 +1,43 @@
+name: Publish API Docs to Public Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout private repo
+      uses: actions/checkout@v3
+
+    - name: Generate Swagger Markdown (example using openapi-generator)
+      run: |
+        mkdir output
+        npx @openapitools/openapi-generator-cli generate \
+          -i Docs/swagger.json \
+          -g markdown \
+          -o output
+
+    - name: Checkout public docs repo
+      uses: actions/checkout@v3
+      with:
+        repository: itassests/Health-NivaBupa-Insurance-doc
+        token: ${{ secrets.NIVADOC_REPO_TOKEN }}
+        path: docs-repo
+
     - name: Copy generated docs
       run: |
         mkdir -p docs-repo/docs
         cp -r output/* docs-repo/docs/
+
+    - name: Commit & push to docs repo
+      run: |
+        cd docs-repo
+        git config user.name "GitHub Action"
+        git config user.email "actions@github.com"
+        git add .
+        git commit -m "Update API docs from private repo"
+        git push
